@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>猛健樂醫院藥事解密任務 - 臨床密室逃脫</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="hospital-container">
+        <!-- 頂部現代監控列 -->
+        <header class="hospital-header">
+            <div class="brand-block">
+                <span class="hospital-cross">🏥</span>
+                <div class="brand-text-group">
+                    <h1 id="room-name-display">密室一：中央藥局－冷鏈與裝置控制室</h1>
+                    <span id="room-step-badge" class="room-step-badge">第 1 / 3 關</span>
+                </div>
+            </div>
+
+            <div class="header-controls">
+                <button id="btn-hint" class="btn-tech" title="尋求臨床邏輯提示">💡 臨床提示</button>
+                <button id="btn-handbook" class="btn-tech btn-tech-primary" title="查閱猛健樂臨床仿單速查手冊">📋 藥事手冊</button>
+                <button id="btn-toggle-audio" class="btn-tech" title="開啟/關閉科技音效">🎵 音效</button>
+            </div>
+        </header>
+
+        <!-- 主視窗視角 (Hospital Viewport) -->
+        <main id="hospital-viewport">
+            <div class="viewport-scanlines"></div>
+
+            <!-- 藥師對話引導框 -->
+            <div id="guide-message-box" class="guide-message-box">
+                <img id="guide-avatar" class="guide-avatar" src="images/characters/companion_alchemist.jpg" alt="Guide">
+                <div class="guide-content">
+                    <div id="guide-title" class="guide-title">藥劑部冷鏈品管藥師</div>
+                    <div id="guide-dialog" class="guide-dialog">連線監控中...</div>
+                </div>
+            </div>
+
+            <!-- 科技終端節點容器 -->
+            <div id="terminals-container"></div>
+        </main>
+
+        <!-- 底部臨床公事包 (Clinical Bag Bar) -->
+        <footer class="clinical-bag-bar">
+            <div class="bag-header">
+                <span>💼 臨床公事包</span>
+            </div>
+            <div id="inventory-slots" class="inventory-slots">
+                <!-- 動態注入道具卡片 -->
+            </div>
+        </footer>
+
+        <!-- 彈窗 1：終端互動視窗 (Terminal Puzzle Modal) -->
+        <div id="puzzle-modal" class="modal-overlay"></div>
+
+        <!-- 彈窗 2：藥事速查手冊 (Handbook Modal) -->
+        <div id="handbook-modal" class="modal-overlay">
+            <div class="terminal-window" style="max-width: 720px;">
+                <div class="terminal-header">
+                    <div class="term-title">📋 猛健樂®（MOUNJARO KwikPen）臨床藥事速查手冊</div>
+                    <button class="btn-term-close" onclick="engine.closeHandbook()">✖</button>
+                </div>
+                <div class="terminal-body" id="handbook-content">
+                    <!-- 動態渲染典籍內容 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 彈窗 3：終極通關與聘任榮譽證書 (Victory Modal) -->
+        <div id="victory-modal" class="modal-overlay">
+            <div class="terminal-window" style="max-width: 680px; text-align: center;">
+                <div class="terminal-header" style="justify-content: center;">
+                    <div class="term-title">🎉 FINAL MISSION 達成・成功逃脫醫院！</div>
+                </div>
+                <div class="terminal-body" style="align-items: center;">
+                    <h2 style="color: var(--med-cyan); font-size: 20px;">🏅 榮獲《醫院臨床藥事衛教專家》認證！</h2>
+                    <p style="color: #cbd5e1; font-size: 13px; margin: 4px 0 10px;">你們憑藉著嚴謹的冷鏈管理、精確的處方審核以及卓越的臨床給藥衛教能力，解開所有醫院密碼！</p>
+                    
+                    <div class="victory-certificate-box">
+                        <div class="cert-row">⏱️ <strong>通關解密總耗時：</strong><span id="escape-duration">-- 分 -- 秒</span></div>
+                        <div class="cert-row">❄️ <strong>冷鏈與 KwikPen 規範：</strong>2~8°C 避光冷藏、30°C/30天、每支4劑0.6mL、排氣旋轉2聲喀擦顯示長線條、拔針顯示「1」、防穿刺桶！</div>
+                        <div class="cert-row">⚠️ <strong>安全性處方防線：</strong>精準警惕黑框警語甲狀腺C細胞瘤MTC、成功攔截MTC/MEN 2危險處方、確立BMI≥30或27+共病門檻！</div>
+                        <div class="cert-row">💊 <strong>卓越臨床衛教：</strong>2.5mg起始4週階梯遞增至上限15mg、漏打4天(96h)內補打/改期至少間隔3天(72h)、避孕藥加強屏障4週、胰島素分開不緊鄰！</div>
+                    </div>
+
+                    <div class="term-actions">
+                        <button class="btn-tech-action" onclick="engine.restart()" style="font-size: 15px; padding: 12px 28px;">🔄 重新進行藥事解密演練</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模組載入 -->
+    <script src="js/hospital-audio.js"></script>
+    <script src="js/hospital-data.js"></script>
+    <script src="js/hospital-puzzles.js"></script>
+    <script src="js/hospital-engine.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
