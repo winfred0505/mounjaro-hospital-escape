@@ -44,9 +44,9 @@ class HospitalPuzzleManager {
                         <label class="q-label">(2) 攜帶出門或使用中的注射筆，最高可在幾度室溫下保存長達幾天？</label>
                         <div class="q-inputs-row">
                             <span>最高攝氏</span>
-                            <input type="number" id="q1_1_2_temp" class="term-input-short" placeholder="度C">
+                            <input type="number" inputmode="numeric" id="q1_1_2_temp" class="term-input-short" placeholder="度C">
                             <span>°C 室溫下，最長保存</span>
-                            <input type="number" id="q1_1_2_days" class="term-input-short" placeholder="天數">
+                            <input type="number" inputmode="numeric" id="q1_1_2_days" class="term-input-short" placeholder="天數">
                             <span>天。</span>
                         </div>
                     </div>
@@ -103,9 +103,9 @@ class HospitalPuzzleManager {
                         <label class="q-label">(1) 每一支猛健樂預充填注射筆（KwikPen）含有幾劑固定劑量？每劑固定體積為多少 mL？</label>
                         <div class="q-inputs-row">
                             <span>含</span>
-                            <input type="number" id="q1_2_1_doses" class="term-input-short" placeholder="劑數">
+                            <input type="number" inputmode="numeric" id="q1_2_1_doses" class="term-input-short" placeholder="劑數">
                             <span>劑固定劑量，每劑為</span>
-                            <input type="number" step="0.1" id="q1_2_1_vol" class="term-input-short" placeholder="mL">
+                            <input type="number" step="0.1" inputmode="decimal" id="q1_2_1_vol" class="term-input-short" placeholder="mL">
                             <span>mL。</span>
                         </div>
                     </div>
@@ -399,10 +399,10 @@ class HospitalPuzzleManager {
                         <label class="q-label">(2) 用於慢性體重控制時，適用成人在初始身體質量指數（BMI）上有何門檻規定？</label>
                         <div class="q-inputs-row" style="flex-direction:column; align-items:flex-start; gap:8px;">
                             <div>
-                                • 初始 BMI ≥ <input type="number" id="q2_3_bmi_obese" class="term-input-short" placeholder="30"> kg/m²（肥胖）
+                                • 初始 BMI ≥ <input type="number" inputmode="numeric" id="q2_3_bmi_obese" class="term-input-short" placeholder="30"> kg/m²（肥胖）
                             </div>
                             <div>
-                                • 或初始 BMI ≥ <input type="number" id="q2_3_bmi_overweight" class="term-input-short" placeholder="27"> kg/m² 且至少患有一項體重相關共病者。
+                                • 或初始 BMI ≥ <input type="number" inputmode="numeric" id="q2_3_bmi_overweight" class="term-input-short" placeholder="27"> kg/m² 且至少患有一項體重相關共病者。
                             </div>
                         </div>
                     </div>
@@ -462,9 +462,9 @@ class HospitalPuzzleManager {
                         <label class="q-label">(1) 猛健樂建議的起始劑量與持續週數為何？2.5 mg 是否可以作為長期的維持劑量？</label>
                         <div class="q-inputs-row" style="flex-wrap:wrap; gap:8px;">
                             <span>起始每週一次</span>
-                            <input type="number" step="0.5" id="q3_1_start" class="term-input-short" placeholder="mg">
+                            <input type="number" step="0.5" inputmode="decimal" id="q3_1_start" class="term-input-short" placeholder="mg">
                             <span>mg，持續</span>
-                            <input type="number" id="q3_1_weeks" class="term-input-short" placeholder="週數">
+                            <input type="number" inputmode="numeric" id="q3_1_weeks" class="term-input-short" placeholder="週數">
                             <span>週。能否作為長期維持劑量？</span>
                             <select id="q3_1_is_maint" class="term-select" style="width:auto;">
                                 <option value="">-- 請選擇 --</option>
@@ -477,11 +477,11 @@ class HospitalPuzzleManager {
                         <label class="q-label">(2) 後續若需逐次調升劑量，每次調升的單位是多少？在當前劑量至少需維持滿多久？每週最大劑量上限是多少？</label>
                         <div class="q-inputs-row" style="flex-wrap:wrap; gap:8px;">
                             <span>每次調升</span>
-                            <input type="number" step="0.5" id="q3_1_step" class="term-input-short" placeholder="mg">
+                            <input type="number" step="0.5" inputmode="decimal" id="q3_1_step" class="term-input-short" placeholder="mg">
                             <span>mg；當前劑量至少維持</span>
-                            <input type="number" id="q3_1_stay_weeks" class="term-input-short" placeholder="週數">
+                            <input type="number" inputmode="numeric" id="q3_1_stay_weeks" class="term-input-short" placeholder="週數">
                             <span>週；每週最大劑量上限為</span>
-                            <input type="number" id="q3_1_max" class="term-input-short" placeholder="mg">
+                            <input type="number" inputmode="numeric" id="q3_1_max" class="term-input-short" placeholder="mg">
                             <span>mg。</span>
                         </div>
                     </div>
@@ -532,9 +532,9 @@ class HospitalPuzzleManager {
                         <label class="q-label">(1) 若病人忘記打針，在漏打後最長幾天（幾小時）內應儘快補打？若已超過該時間應如何處置？</label>
                         <div class="q-inputs-row" style="flex-wrap:wrap; gap:8px;">
                             <span>最長於漏打後</span>
-                            <input type="number" id="q3_2_miss_days" class="term-input-short" placeholder="天數">
+                            <input type="number" inputmode="numeric" id="q3_2_miss_days" class="term-input-short" placeholder="天數">
                             <span>天（</span>
-                            <input type="number" id="q3_2_miss_hrs" class="term-input-short" placeholder="小時">
+                            <input type="number" inputmode="numeric" id="q3_2_miss_hrs" class="term-input-short" placeholder="小時">
                             <span>小時）內補打；若超過則應：</span>
                             <select id="q3_2_miss_action" class="term-select">
                                 <option value="">-- 請選擇逾期處置 --</option>
@@ -547,9 +547,9 @@ class HospitalPuzzleManager {
                         <label class="q-label">(2) 若要更改每週固定給藥日期，兩劑之間的時間間隔至少須為幾天（幾小時）？</label>
                         <div class="q-inputs-row" style="flex-wrap:wrap; gap:8px;">
                             <span>兩劑間隔至少須為</span>
-                            <input type="number" id="q3_2_resched_days" class="term-input-short" placeholder="天數">
+                            <input type="number" inputmode="numeric" id="q3_2_resched_days" class="term-input-short" placeholder="天數">
                             <span>天（</span>
-                            <input type="number" id="q3_2_resched_hrs" class="term-input-short" placeholder="小時">
+                            <input type="number" inputmode="numeric" id="q3_2_resched_hrs" class="term-input-short" placeholder="小時">
                             <span>小時）。</span>
                         </div>
                     </div>
