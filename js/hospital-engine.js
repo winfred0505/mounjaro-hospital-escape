@@ -1,4 +1,4 @@
-﻿/**
+/**
  * hospital-engine.js - 醫院藥事解密遊戲引擎
  */
 
@@ -212,7 +212,7 @@ class HospitalEscapeEngine {
         if (window.hospitalAudio) window.hospitalAudio.playBeep();
         let hint = "";
         if (this.currentRoomId === 1) {
-            hint = "💡【密室一提示】\n• 1-1：冷藏 2~8°C，室溫 30 度對應 30 天，結凍絕不可使用！\n• 1-2：每支 4 劑 0.6 mL，排氣聽到 2 聲喀擦，顯示長線條！\n• 1-3：拔針時必須顯示「1」，針頭不留筆、進防穿刺盒！";
+            hint = "💡【密室一提示】\n• 1-1：冷藏 2~8°C，室溫 30 度對應 30 天，結凍絕不可使用！\n• 1-2：每支 4 劑 0.6 mL，排氣聽到 2 聲喀擦，顯示長線條！\n• 1-3：拔針時必須顯示「0」，針頭不留筆、進防穿刺盒！";
         } else if (this.currentRoomId === 2) {
             hint = "💡【密室二提示】\n• 2-1：黑框警語為甲狀腺 C 細胞瘤 (MTC)，通報頸部腫塊/吞嚥/呼吸困難/嘶啞！\n• 2-2：攔截具有 MTC 與 MEN 2 病史的處方！\n• 2-3：適應症改善第二型糖尿病血糖；BMI 門檻為 30（肥胖）或 27（過重+共病）！";
         } else if (this.currentRoomId === 3) {

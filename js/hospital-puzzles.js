@@ -1,4 +1,4 @@
-﻿/**
+/**
  * hospital-puzzles.js - 醫院藥事解密三大關卡與 9 個分支線索交互邏輯
  */
 
@@ -210,15 +210,15 @@ class HospitalPuzzleManager {
         const a1 = document.getElementById('q1_3_1').value;
         const a2 = document.getElementById('q1_3_2').value;
 
-        if (a1 === '1' && a2 === 'strict_sharps') {
+        if (a1 === '0' && a2 === 'strict_sharps') {
             if (window.hospitalAudio) window.hospitalAudio.playCardScan();
             this.engine.gameState.solved_1_3 = true;
-            alert("✅【線索 1-3 檢定通過！】\n視窗顯示「1」確認完成完整劑量注入！嚴格恪守針頭不留筆、卸下針頭投入防穿刺尖銳物桶的安全規範！");
+            alert("✅【線索 1-3 檢定通過！】\n視窗回到「0」確認完成完整劑量注入！嚴格恪守針頭不留筆、卸下針頭投入防穿刺尖銳物桶的安全規範！");
             this.closeModal();
             this.checkRoom1Status();
         } else {
             if (window.hospitalAudio) window.hospitalAudio.playAlarm();
-            alert("❌【感控警報：判定數值或廢棄處置錯誤！】\n提示：拔針時視窗必須顯示「1」，且針頭絕不可留在筆上、必須丟入防穿刺容器！");
+            alert("❌【感控警報：判定數值或廢棄處置錯誤！】\n提示：拔針時視窗必須回到「0」，且針頭絕不可留在筆上、必須丟入防穿刺容器！");
         }
     }
 
