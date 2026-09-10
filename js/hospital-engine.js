@@ -98,7 +98,7 @@ class HospitalEscapeEngine {
     bindEvents() {
         document.getElementById("btn-toggle-audio")?.addEventListener("click", () => {
             const isMuted = !window.hospitalAudio.toggleMute();
-            document.getElementById("btn-toggle-audio").innerText = isMuted ? "🔇 靜音" : "🎵 音效";
+            document.getElementById("btn-toggle-audio").innerText = isMuted ? "🔇 靜音" : "🎵 音樂: 開";
         });
 
         document.getElementById("btn-handbook")?.addEventListener("click", () => {
@@ -112,6 +112,9 @@ class HospitalEscapeEngine {
 
     loadRoom(roomId) {
         this.currentRoomId = roomId;
+        if (window.hospitalAudio && window.hospitalAudio.setRoomTheme) {
+            window.hospitalAudio.setRoomTheme(roomId);
+        }
         const room = HOSPITAL_DATA.rooms.find(r => r.id === roomId);
         if (!room) return;
 
@@ -232,6 +235,9 @@ class HospitalEscapeEngine {
         const remSec = sec % 60;
 
         document.getElementById("escape-duration").innerText = `${mins} 分 ${remSec} 秒`;
+        if (window.hospitalAudio) {
+            window.hospitalAudio.playVictory();
+        }
         document.getElementById("victory-modal").classList.add("active");
     }
 
