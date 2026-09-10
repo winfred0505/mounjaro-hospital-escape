@@ -96,10 +96,19 @@ class HospitalEscapeEngine {
     }
 
     bindEvents() {
-        document.getElementById("btn-toggle-audio")?.addEventListener("click", () => {
-            const isMuted = !window.hospitalAudio.toggleMute();
-            document.getElementById("btn-toggle-audio").innerText = isMuted ? "🔇 靜音" : "🎵 音樂: 開";
-        });
+        const audioBtn = document.getElementById("btn-toggle-audio");
+        if (audioBtn) {
+            audioBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (!window.hospitalAudio.bgmPlaying && window.hospitalAudio.enabled) {
+                    window.hospitalAudio.startBgm();
+                    audioBtn.innerText = "🔊 音樂: 開";
+                } else {
+                    const isEnabled = window.hospitalAudio.toggleMute();
+                    audioBtn.innerText = isEnabled ? "🔊 音樂: 開" : "🔇 靜音";
+                }
+            });
+        }
 
         document.getElementById("btn-handbook")?.addEventListener("click", () => {
             this.openHandbook();
