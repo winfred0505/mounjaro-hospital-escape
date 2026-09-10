@@ -73,14 +73,22 @@ class HospitalSoundEngine {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             this.ctx = new AudioContext();
 
-            // 建立主控與分軌混音節點
+            // 建立動態壓縮器防破音並建立主控節點
+            this.compressor = this.ctx.createDynamicsCompressor();
+            this.compressor.threshold.setValueAtTime(-6, this.ctx.currentTime);
+            this.compressor.knee.setValueAtTime(12, this.ctx.currentTime);
+            this.compressor.ratio.setValueAtTime(4, this.ctx.currentTime);
+            this.compressor.attack.setValueAtTime(0.003, this.ctx.currentTime);
+            this.compressor.release.setValueAtTime(0.25, this.ctx.currentTime);
+            this.compressor.connect(this.ctx.destination);
+
             this.masterGain = this.ctx.createGain();
             this.masterGain.gain.setValueAtTime(1.0, this.ctx.currentTime);
-            this.masterGain.connect(this.ctx.destination);
+            this.masterGain.connect(this.compressor);
 
-            // BGM 懸疑音樂音量（提升至 0.75，確保電腦與手機清晰可聞）
+            // BGM 懸疑音樂總增益節點直接拉升至 2.5
             this.bgmGain = this.ctx.createGain();
-            this.bgmGain.gain.setValueAtTime(0.75, this.ctx.currentTime);
+            this.bgmGain.gain.setValueAtTime(2.5, this.ctx.currentTime);
             this.bgmGain.connect(this.masterGain);
 
             // 音效音量
@@ -139,8 +147,8 @@ class HospitalSoundEngine {
 
         if (this.bgmGain) {
             this.bgmGain.gain.cancelScheduledValues(this.ctx.currentTime);
-            this.bgmGain.gain.setValueAtTime(0.1, this.ctx.currentTime);
-            this.bgmGain.gain.linearRampToValueAtTime(0.75, this.ctx.currentTime + 0.6);
+            this.bgmGain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+            this.bgmGain.gain.linearRampToValueAtTime(2.5, this.ctx.currentTime + 0.5);
         }
 
         if (this.schedulerInterval) clearInterval(this.schedulerInterval);
